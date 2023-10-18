@@ -27,6 +27,8 @@ div.display{
 }
 .mathSign{
     font-size:32px;
+    color:white;
+
 }
 .currentNum{
     font-size: 40px;
