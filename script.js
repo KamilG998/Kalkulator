@@ -8,6 +8,7 @@ const clearMemoryBtn = document.querySelector('.clearMemory');
 const operatorsBtn = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('.equal');
 const switchBtn = document.querySelector('.switch');
+const memory = document.querySelector('.memory-panel')
 
 
 let result = '';
@@ -71,6 +72,8 @@ function showResult(){
 
         
     }
+    addToHistory();
+
     currentNum.innerHTML = result;
     prevNum.innerHTML='';
     mathSign.innerHTML='';
@@ -86,7 +89,7 @@ function clearScreen(){
 }
 
 function clearMemory(){
-
+memory.innerHTML=''
 }
 
 function switchCalculator(){
@@ -96,7 +99,11 @@ function switchCalculator(){
    mathSign.innerHTML=''
 }
 
-
+function addToHistory(){
+    const newHistoryItem= document.createElement('li');
+    newHistoryItem.innerHTML= `${currentNum.innerHTML} ${mathSign.innerHTML} ${prevNum.innerHTML} = ${result}`;
+    memory.appendChild(newHistoryItem)
+}
 
 
 operatorsBtn.forEach((button) => {
