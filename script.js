@@ -7,12 +7,15 @@ const clearBtn = document.querySelector('.clear');
 const clearMemoryBtn = document.querySelector('.clearMemory');
 const operatorsBtn = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('.equal');
+const switchBtn = document.querySelector('.switch');
+
 
 let result = '';
 
 function displayNumbers(){
     if(this.textContent === '.' && currentNum.innerHTML.includes('.')) return;
     currentNum.innerHTML+=this.textContent;
+    return;
 }
 
 function operate(){
@@ -55,6 +58,9 @@ function showResult(){
         case'/':
         result = prev /current;
         break;
+        case '2^':
+        result = prev ** current;
+        break;
         case'x':
         result=prev * current;
         break;
@@ -83,6 +89,13 @@ function clearMemory(){
 
 }
 
+function switchCalculator(){
+   display.classList.toggle('switchDisplay');
+   prevNum.innerHTML='';
+   currentNum.innerHTML='';
+   mathSign.innerHTML=''
+}
+
 
 
 
@@ -96,6 +109,9 @@ clearMemoryBtn.addEventListener('click',clearMemory);
 numbers.forEach((button)=>{
     button.addEventListener('click', displayNumbers)
 })
+
+
+switchBtn.addEventListener('click', switchCalculator);
 
 
 
