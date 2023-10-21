@@ -13,6 +13,7 @@ body{
     text-align: center;
     background-image:linear-gradient(to right bottom, #9f9b8f, #a1838d, #177191, #50287a, #3e6f6b);
     color:white;
+    overflow:hidden;
 }
 div.display{
     width:100%;
@@ -33,6 +34,8 @@ div.display{
     font-size: 34px;
     
 }
+
+
 div.calculator{
     height:75vh;
     /* min-height:85vh; */
@@ -89,6 +92,14 @@ ul.memory-panel{
 ul li{
     list-style: none;
     word-break: break-all;
+}
+
+button.clear-history{
+    font-size: 17px;
+    background-color:inherit;
+    padding:4px;
+    color:white;
+    border:none;
 }
 
 

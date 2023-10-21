@@ -1,25 +1,34 @@
 const display = document.querySelector('.display');
 const prevNum = document.querySelector('.prevNum p');
-const currentNum = document.querySelector('.currentNum');
 const mathSign= document.querySelector('.mathSign');
 const numbers = document.querySelectorAll('.number');
 const clearBtn = document.querySelector('.clear');
-const clearMemoryBtn = document.querySelector('.clearMemory');
+const clearSaveBtn = document.querySelector('.clearSave');
 const operatorsBtn = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('.equal');
 const switchBtn = document.querySelector('.switch');
 const memory = document.querySelector('.memory-panel')
+const addToMemory = document.querySelector('.plus-memory')
+const removeFromMemory = document.querySelector('.minus-memory');
+const clearMemoryBtn= document.querySelector('.clear-history');
+let currentNum = document.querySelector('.currentNum');
+let memoryNumber= document.querySelector('.memoryNum')
 
-
+let saveMemory = 0;
 let result = '';
+let memoryNum=Number(memoryNumber)
+memoryNum=0;
 
 function displayNumbers(){
+    
     if(this.textContent === '.' && currentNum.innerHTML.includes('.')) return;
     currentNum.innerHTML+=this.textContent;
     return;
+   
 }
 
 function operate(){
+   
     if(currentNum.innerHTML === '' && this.textContent === '-'){ 
         currentNum.innerHTML = '-';
         return;
@@ -103,7 +112,47 @@ function addToHistory(){
     const newHistoryItem= document.createElement('li');
     newHistoryItem.innerHTML= `${currentNum.innerHTML} ${mathSign.innerHTML} ${prevNum.innerHTML} = ${result}`;
     memory.appendChild(newHistoryItem)
+};
+
+
+
+function addNumberToMemory(){
+
+    let current= Number(currentNum.innerHTML)
+    
+    if(memoryNum !==0){
+        memoryNum += current;
+        console.log(memoryNum)
+
+    }else{
+
+        memoryNum+=current;
+        console.log(memoryNum)
+    }
+    clearScreen();
+
 }
+
+function removeMemories(){
+
+    let current= Number(currentNum.innerHTML)
+    if(memoryNum !==0){
+        memoryNum -= current;
+        console.log(memoryNum)
+
+    }else{
+        memoryNum-=current;
+        console.log(memoryNum)
+    }
+    clearScreen();
+}
+
+function clearSaveNumbers(){
+    memoryNum=0;
+    currentNum.innerHTML=''
+}
+
+
 
 
 operatorsBtn.forEach((button) => {
@@ -114,16 +163,12 @@ clearBtn.addEventListener('click',clearScreen);
 clearMemoryBtn.addEventListener('click',clearMemory);
 
 numbers.forEach((button)=>{
-    button.addEventListener('click', displayNumbers)
-})
-
-
+    button.addEventListener('click', displayNumbers);
+});
 switchBtn.addEventListener('click', switchCalculator);
+addToMemory.addEventListener('click', addNumberToMemory);
+removeFromMemory.addEventListener('click' , removeMemories)
 
+clearSaveBtn.addEventListener('click', clearSaveNumbers);
 
-
-
-
-
-
-
+// Nie dziala wynik z pamieci (wykonsolowane)
